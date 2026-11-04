@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mis archivos</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 900px; margin: 0 auto; padding: 1rem; line-height: 1.6; }
+  h1 { font-size: 1.5rem; }
+  input { width: 100%; padding: .6rem; font-size: 1rem; margin-bottom: 1rem; box-sizing: border-box; }
+  ul { list-style: none; padding-left: 1.2rem; margin: .2rem 0; }
+  body > ul { padding-left: 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  small { color: #666; }
+  .oculto { display: none; }
+</style>
+</head>
+<body>
+<h1>Mis archivos <small>(0)</small></h1>
+<input id="buscar" type="search" placeholder="Buscar archivo…" autofocus>
+<p>Todavía no hay archivos.</p>
+<script>
+  const caja = document.getElementById('buscar');
+  caja.addEventListener('input', () => {
+    const q = caja.value.trim().toLowerCase();
+    document.querySelectorAll('li.archivo').forEach((li) => {
+      li.classList.toggle('oculto', q && !li.textContent.toLowerCase().includes(q));
+    });
+    document.querySelectorAll('details').forEach((d) => {
+      const hay = d.querySelector('li.archivo:not(.oculto)');
+      d.parentElement.classList.toggle('oculto', q && !hay);
+      if (q) d.open = true;
+    });
+  });
+</script>
+</body>
+</html>
