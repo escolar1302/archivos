@@ -56,3 +56,13 @@ sin subir, commits sin bajar y archivos nuevos o modificados.
 
 - Si hay pull requests abiertos, avisarme.
 - Referirse a ellos como "solicitudes de cambio pedidas por <usuario>", usando el autor del pull request.
+
+### Cambios falsos por Windows/Ubuntu
+
+La carpeta se comparte entre Windows y Ubuntu. Si `git status` muestra cientos o miles de archivos
+modificados sin cambios reales (permisos y saltos de línea distintos), en esa copia correr:
+
+- `git config core.fileMode false`
+- `git config core.autocrlf true`
+
+`.gitattributes` ya fija LF en el repositorio.
